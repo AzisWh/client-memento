@@ -1,4 +1,4 @@
-import { StrictMode, useEffect } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
@@ -11,7 +11,6 @@ import { store, persistor } from './redux/store.ts';
 import { PersistGate } from 'redux-persist/integration/react';
 
 AOS.init({ duration: 1000, once: true });
-// dotenv.config();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, registerUser, logout } from '../../redux/auth/authSlice';
+import { loginUser } from '../../redux/auth/authSlice';
 import { RootState, AppDispatch } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { user, token, loading, error } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const { loading } = useSelector((state: RootState) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState('');
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
@@ -44,13 +41,13 @@ const Login: React.FC = () => {
       }
     } else {
       try {
-        const Regsitresult = await dispatch(
-          registerUser({
-            name: form.name,
-            email: form.email,
-            password: form.password,
-          })
-        ).unwrap();
+        // const Regsitresult = await dispatch(
+        //   registerUser({
+        //     name: form.name,
+        //     email: form.email,
+        //     password: form.password,
+        //   })
+        // ).unwrap();
 
         const loginResult = await dispatch(
           loginUser({ email: form.email, password: form.password })
