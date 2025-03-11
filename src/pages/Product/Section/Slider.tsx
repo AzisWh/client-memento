@@ -10,10 +10,6 @@ interface SwiperSlide {
   foodlist: FoodList[];
 }
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/free-mode';
-
 import { FreeMode, Pagination } from 'swiper/modules';
 
 const imageUrl =
@@ -92,6 +88,9 @@ const Slider: React.FC<SwiperSlide> = ({ foodlist }) => {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+      <div className="text-center p-3">
+        <h1 className="text-2xl font-bold">swipe content</h1>
       </div>
     </>
   );
