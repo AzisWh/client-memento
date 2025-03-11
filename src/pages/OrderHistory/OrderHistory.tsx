@@ -29,9 +29,6 @@ const OrderHistory: React.FC = () => {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (!orderHistory || orderHistory.purchases.length === 0)
-    return <p>No purchase history .</p>;
-
   const imageUrl =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpd0GwHqyS9TdoJRmXuz0Y3e2Olpp9w7g_tA&s';
 
@@ -51,25 +48,31 @@ const OrderHistory: React.FC = () => {
               className="md:flex duration-300 hover:bg-lime-400 text-black hover:text-white bg-[#DAE952]"
             />
           </div>
-          {orderHistory.purchases.map((purchase) => (
-            <div
-              data-aos="fade-up"
-              key={purchase.id}
-              className="border p-4 mb-4 rounded-lg shadow-lg">
-              <img
-                src={imageUrl || purchase.food.image}
-                alt={purchase.food.name}
-                className="w-20 h-20 object-cover rounded-md"
-              />
-              <h2 className="text-lg font-semibold">{purchase.food.name}</h2>
-              <p>Quantity: {purchase.quantity}</p>
-              <p>Total Price: ${purchase.total_price}</p>
-              <p className="text-sm text-gray-500">
-                Purchased on:{' '}
-                {new Date(purchase.created_at).toLocaleDateString()}
-              </p>
+          {!orderHistory || orderHistory.purchases.length === 0 ? (
+            <div className="text-center text-gray-600 mt-6">
+              <p data-aos="fade-up">You have not made any purchases yet.</p>
             </div>
-          ))}
+          ) : (
+            orderHistory.purchases.map((purchase) => (
+              <div
+                data-aos="fade-up"
+                key={purchase.id}
+                className="border p-4 mb-4 rounded-lg shadow-lg">
+                <img
+                  src={imageUrl || purchase.food.image}
+                  alt={purchase.food.name}
+                  className="w-20 h-20 object-cover rounded-md"
+                />
+                <h2 className="text-lg font-semibold">{purchase.food.name}</h2>
+                <p>Quantity: {purchase.quantity}</p>
+                <p>Total Price: ${purchase.total_price}</p>
+                <p className="text-sm text-gray-500">
+                  Purchased on:{' '}
+                  {new Date(purchase.created_at).toLocaleDateString()}
+                </p>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
