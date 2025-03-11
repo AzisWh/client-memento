@@ -40,3 +40,8 @@ yarn dev
 # or
 pnpm dev
 ```
+
+## dummy account
+
+email: test@gmail.com
+password: test123
